@@ -1,15 +1,19 @@
 {
-  "name": "users",
+  "name": "lyrical",
   "version": "1.0.0",
-  "description": "",
+  "description": "Starter point for a graphQL course",
   "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StephenGrider/Lyrical-GraphQL"
+  },
   "scripts": {
     "dev": "nodemon index.js --ignore client"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-client": "^0.8.0",
+    "apollo-client": "^0.8.1",
     "axios": "^0.15.3",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
@@ -28,7 +32,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "react": "^15.4.2",
-    "react-apollo": "^0.8.3",
+    "react-apollo": "^0.9.0",
     "react-dom": "^15.4.2",
     "react-router": "^3.0.2",
     "style-loader": "^0.13.1",
