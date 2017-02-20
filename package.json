@@ -13,6 +13,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "nodemon": "*",
     "apollo-client": "^0.8.1",
     "axios": "^0.15.3",
     "babel-core": "^6.22.1",
