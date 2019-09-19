@@ -13,7 +13,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "nodemon": "*",
     "apollo-client": "^0.8.1",
     "axios": "^0.15.3",
     "babel-core": "^6.22.1",
@@ -29,7 +28,8 @@
     "graphql": "^0.8.2",
     "html-webpack-plugin": "^2.26.0",
     "lodash": "^4.17.4",
-    "mongoose": "^4.7.8",
+    "mongoose": "^5.7.1",
+    "nodemon": "*",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "react": "15.4.2",
