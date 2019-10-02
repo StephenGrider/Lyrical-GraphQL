@@ -1,16 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ApolloClient from 'apollo-client';
 import {ApolloProvider} from 'react-apollo';
 
-import SongList from './components/SongList';
+import App from './components/App';
 
 const client = new ApolloClient({});
 
 const Root = () => {
   return (
     <ApolloProvider client={client}>
-      <SongList />
+      <Router >
+        <Switch>
+          <Route exact path="/">
+            <App />
+          </Route>
+        </Switch>
+      </Router>
     </ApolloProvider>
   );
 };
