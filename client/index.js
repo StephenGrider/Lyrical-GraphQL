@@ -14,15 +14,12 @@ const client = new ApolloClient({});
 const Root = () => {
   return (
     <ApolloProvider client={client}>
-      <HashRouter >
-        <Switch>
-          <Route path="/song/create">
-            <SongCreate />
-          </Route>
+      <HashRouter>
 
-          <Route exact path="/">
-            <App />
-          </Route>
+        <Switch>
+          <Route exact path="/song" component={SongCreate} />
+
+          <Route exact path="/" component={App}/>
 
         </Switch>
       </HashRouter>
@@ -31,6 +28,6 @@ const Root = () => {
 };
 
 ReactDOM.render(
-  <Root />,
+    <Root />,
   document.querySelector('#root')
 );
