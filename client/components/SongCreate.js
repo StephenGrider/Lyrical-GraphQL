@@ -21,8 +21,8 @@ class SongCreate extends Component {
         this.props.mutate({
             variables: {
                 title: this.state.title,
-                refetchQueries: [{query}]
-            }
+            },
+            refetchQueries: [{ query }]
         }).then(() => this.props.history.push("/"))
     }
 
