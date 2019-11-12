@@ -6,8 +6,10 @@ import {ApolloProvider} from 'react-apollo';
 
 import App from './components/App';
 import SongCreate from './components/SongCreate';
+import SongDetail from './components/SongDetail';
 
 import './components/App.css';
+import './style/style.css';
 
 const client = new ApolloClient({});
 
@@ -17,9 +19,9 @@ const Root = () => {
       <HashRouter>
 
         <Switch>
-          <Route exact path="/songs/new" component={SongCreate} />
-
           <Route exact path="/" component={App}/>
+          <Route exact path="/songs/new" component={SongCreate} />
+          <Route exact path="/songs/:id" component={SongDetail}/>
 
         </Switch>
       </HashRouter>
