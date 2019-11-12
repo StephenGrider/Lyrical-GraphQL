@@ -11,9 +11,9 @@ class SongList extends Component {
         this.props.mutate({
             variables: {
                 id: id,
-            },
-            refetchQueries: [{ query }]
+            }
         })
+        .then(() => this.props.data.refetch());
     }
 
     renderSongs() {
