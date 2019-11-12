@@ -6,3 +6,7 @@
 .material-icons {
     cursor: pointer;
 }
+
+.collection a.collection-item {
+    display: flex;
+}
