@@ -4,13 +4,17 @@ import fetchSong from '../quieries/fetchSong';
 
 export class SongDetail extends Component {
     render() {
-        console.log(this.props)
-        return (
-            <div>
-                SongDetail
-                
-            </div>
-        )
+        const { song } = this.props.data;
+
+        if (!song) {
+            return <div>Loading...</div>;
+        } else {
+            return (
+                <div>
+                    {song.title}  
+                </div>
+            )
+        }
     }
 }
 
