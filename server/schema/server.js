@@ -9,7 +9,7 @@ const app = express();
 
 // Replace with your mongoLab URI
 
-const MONGO_URI = ``;
+const MONGO_URI = `mongodb+srv://admin:admin@graphql-lyrical.xww2k.mongodb.net/lyrical-graphql?retryWrites=true&w=majority`;
 
 if (!MONGO_URI) {
   throw new Error("You must provide a MongoLab URI");
