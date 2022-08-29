@@ -38,5 +38,8 @@
     "style-loader": "^0.13.1",
     "webpack": "^2.2.0",
     "webpack-dev-middleware": "^1.9.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
