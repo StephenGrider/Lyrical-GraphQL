@@ -1,30 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router";
-import gql from "graphql-tag";
 import { graphql } from "react-apollo";
 import LyricCreate from "./LyricCreate";
 import LyricList from "./LyricList";
 import query from "../queries/song";
 
 class SongDetail extends Component {
-  renderLyrics() {
-    return (this.props.data.song.lyrics || []).map(({ id, content }) => {
-      return (
-        <li className="collection-item " key={id}>
-          {content}
-          {/* <i
-            className="material-icons"
-            onClick={() => {
-              this.onSongDelete(id);
-            }}
-          >
-            delete
-          </i> */}
-        </li>
-      );
-    });
-  }
-
   render() {
     return (
       <div>
