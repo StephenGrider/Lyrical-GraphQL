@@ -1,10 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
-import ApolloClient from "apollo-client";
-import { ApolloProvider } from "react-apollo";
-import { Route, Router, hashHistory, IndexRoute } from "react-router";
+import ReactDOM from "react-dom/client";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import { Route, Switch, HashRouter } from "react-router-dom";
 
-import App from "./components/App";
+import Layout from "./components/Layout";
 import SongList from "./components/SongList";
 import SongCreate from "./components/SongCreate";
 import SongDetail from "./components/SongDetail";
@@ -12,21 +11,34 @@ import SongDetail from "./components/SongDetail";
 import "./style/style.css";
 
 const apolloClient = new ApolloClient({
+  uri: "http://localhost:4000/graphql",
   dataIdFromObject: (o) => o.id,
+  cache: new InMemoryCache(),
 });
 
-const Root = () => {
+const App = () => {
   return (
     <ApolloProvider client={apolloClient}>
-      <Router history={hashHistory}>
-        <Route path="/" component={App}>
-          <IndexRoute component={SongList} />
-          <Route path="/song/new" component={SongCreate} />
-          <Route path="/song/:id" component={SongDetail} />
-        </Route>
-      </Router>
+      <Layout>
+        <HashRouter>
+          <Switch>
+            <Route path="/song/new">
+              <SongCreate />
+            </Route>
+            <Route path="/song/:id">
+              <SongDetail />
+            </Route>
+            <Route path="/">
+              <SongList />
+            </Route>
+          </Switch>
+        </HashRouter>
+      </Layout>
     </ApolloProvider>
   );
 };
 
-ReactDOM.render(<Root />, document.querySelector("#root"));
+const rootEl = document.querySelector("#root");
+const root = ReactDOM.createRoot(rootEl);
+
+root.render(<App />);

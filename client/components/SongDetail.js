@@ -1,27 +1,24 @@
-import React, { Component } from "react";
-import { Link } from "react-router";
-import { graphql } from "react-apollo";
+import React from "react";
+import { Link, useParams } from "react-router-dom";
 import LyricCreate from "./LyricCreate";
 import LyricList from "./LyricList";
-import query from "../queries/song";
+import songQuery from "../queries/song";
+import { useQuery } from "@apollo/client";
 
-class SongDetail extends Component {
-  render() {
-    return (
-      <div>
-        <Link to="/">Back </Link>
-        <h3>
-          {this.props.data.loading ? "Loading..." : this.props.data.song.title}
-        </h3>
-        {!this.props.data.loading && (
-          <LyricList lyrics={this.props.data.song.lyrics} />
-        )}
-        <LyricCreate songId={this.props.params.id} />
-      </div>
-    );
-  }
-}
+const SongDetail = () => {
+  const { id } = useParams();
+  const { data, loading } = useQuery(songQuery, {
+    variables: { id },
+  });
 
-export default graphql(query, {
-  options: (props) => ({ variables: { id: props.params.id } }),
-})(SongDetail);
+  return (
+    <div>
+      <Link to="/">Back </Link>
+      <h3>{loading ? "Loading..." : data.song.title}</h3>
+      {!loading && <LyricList lyrics={data.song.lyrics} />}
+      <LyricCreate songId={id} />
+    </div>
+  );
+};
+
+export default SongDetail;

@@ -1,10 +1,20 @@
-import React, { Component } from "react";
-import gql from "graphql-tag";
-import { graphql } from "react-apollo";
+import React from "react";
+import { gql, useMutation } from "@apollo/client";
 
-class LyricList extends Component {
-  onLike(id, currentLikes) {
-    this.props.mutate({
+const mutation = gql`
+  mutation AddLike($id: ID!) {
+    likeLyric(id: $id) {
+      id
+      likes
+    }
+  }
+`;
+
+const LyricList = ({ lyrics }) => {
+  const [mutateFunction] = useMutation(mutation);
+
+  const onLike = (id, currentLikes) => {
+    mutateFunction({
       variables: {
         id,
       },
@@ -17,17 +27,17 @@ class LyricList extends Component {
         },
       },
     });
-  }
+  };
 
-  renderLyrics() {
-    return (this.props.lyrics || []).map(({ id, content, likes }) => {
+  const renderLyrics = () => {
+    return (lyrics || []).map(({ id, content, likes }) => {
       return (
         <li className="collection-item " key={id}>
           {`${content} (${likes || 0})`}
           <i
             className="material-icons"
             onClick={() => {
-              this.onLike(id, likes);
+              onLike(id, likes);
             }}
           >
             thumb_up
@@ -35,20 +45,9 @@ class LyricList extends Component {
         </li>
       );
     });
-  }
+  };
 
-  render() {
-    return <ul className="collection">{this.renderLyrics()}</ul>;
-  }
-}
+  return <ul className="collection">{renderLyrics()}</ul>;
+};
 
-const mutation = gql`
-  mutation AddLike($id: ID!) {
-    likeLyric(id: $id) {
-      id
-      likes
-    }
-  }
-`;
-
-export default graphql(mutation)(LyricList);
+export default LyricList;
